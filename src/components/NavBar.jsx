@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import swal from 'sweetalert';
 
 const NavBar = () => {
     const navigate = useNavigate();
