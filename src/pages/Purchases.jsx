@@ -22,15 +22,24 @@ const Purchases = () => {
             {purchases.map(purchase => {
                 return(
                     <div key={purchase.id}>
+                        <div>
+                            {purchase.createdAt}
+                        </div>
                         {purchase.cart?.products.map(productItem => (
                         <div key={productItem.id}>
                             
-                            <div className='name-product'>
-                                {productItem.title}
-                            </div>
+                            <div>
+                                <div className='name-product'>
+                                    {productItem.title}
+                                </div>
 
-                            <div className='price-product'>
-                                {productItem.price}
+                                <div className='price-product'>
+                                    {productItem.price}
+                                </div>
+
+                                <div className='price-product'>
+                                    {productItem.productsInCart.quantity}
+                                </div>
                             </div>
                         </div>
                         ))}
