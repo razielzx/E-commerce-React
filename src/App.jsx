@@ -7,6 +7,7 @@ import LoadingScreen from './components/LoadingScreen'
 import NavBar from './components/NavBar'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import { useSelector } from 'react-redux/es/exports'
+import TopBar from './components/TopBar'
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
   return (
       <HashRouter>
+        <TopBar/>
         <NavBar/>
         {isLoading && <LoadingScreen/>}
         <Routes>

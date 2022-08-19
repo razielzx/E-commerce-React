@@ -1,0 +1,19 @@
+.cart-button {
+    margin-right: 1rem;
+}
+
+.cart-item {
+    border: 2px solid #FF6F61;
+    margin: 10px 0 10px 0;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.item-date,
+.title-product,
+.price-product,
+.price-quantity {
+    color: #353535;
+    padding-left: 5px;
+    padding-top: 2px;
+}

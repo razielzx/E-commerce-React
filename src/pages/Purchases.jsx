@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { getPurchasesThunk } from '../store/slices/purchases.slice';
+import '../styles/purchases.css'
 
 const Purchases = () => {
 
@@ -11,35 +12,35 @@ const Purchases = () => {
         dispatch(getPurchasesThunk());
     }, [])
 
-    console.log(purchases)
+    //console.log(purchases)
 
     return (
-        <div className='purchased-item'>
+        <div className='purchased-item-container'>
             <div className='header'>
                 <h1>My Purchases</h1>
             </div>
-            <div className='purchase-products-list'>
+            <div className='container'>
             {purchases.map(purchase => {
                 return(
-                    <div key={purchase.id}>
-                        <div>
+                    <div key={purchase.id} className='purchased-products-list'>
+                        <h6 className='item-date'>
                             {purchase.createdAt}
-                        </div>
+                        </h6>
                         {purchase.cart?.products.map(productItem => (
                         <div key={productItem.id}>
                             
-                            <div>
-                                <div className='name-product'>
+                            <div className='purchased-item'>
+                                <h6 className='title-product'>
                                     {productItem.title}
-                                </div>
+                                </h6>
 
-                                <div className='price-product'>
-                                    {productItem.price}
-                                </div>
+                                <h6 className='price-product'>
+                                    Price: {productItem.price}
+                                </h6>
 
-                                <div className='price-product'>
-                                    {productItem.productsInCart.quantity}
-                                </div>
+                                <h6 className='price-quantity'>
+                                    Quantity: {productItem.productsInCart.quantity}
+                                </h6>
                             </div>
                         </div>
                         ))}

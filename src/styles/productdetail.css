@@ -1,0 +1,58 @@
+.product-btn,
+.add-btn {
+    margin-top: 2rem;
+}
+
+button:hover {
+    background-color: #FF6F61;
+    transition: .2s;
+}
+
+.add-btn {
+    padding: 15px;
+}
+
+button {
+    border: 3px solid #FF6F61;
+    background-color: #FFFF;
+}
+
+.quantity {
+    background-color: black;
+    color: #ffff;
+}
+
+.product-title,
+.product-price,
+.product-description,
+.related-products,
+.prd-realted-title,
+.prd-realted-price {
+    text-align: center;
+    color: #353535;
+}
+
+.product-description {
+    border: 3px solid #FF6F61;
+    padding: .5px;
+} 
+
+.product-title {
+    margin-top: 2rem;
+}
+
+.product-img {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+.prd-realted-img {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}

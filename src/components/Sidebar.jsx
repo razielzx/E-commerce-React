@@ -4,7 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { useNavigate } from 'react-router-dom';
 import { buyCartThunk, getCartThunk } from '../store/slices/cart.slice'
-
+import '../styles/sidebar.css'
 
 
 const Sidebar = () => {
@@ -12,13 +12,13 @@ const Sidebar = () => {
     //Sidebar button
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    
+
     const handleShow = () => {
         const token = localStorage.getItem('token')
-        if(token){
-        setShow(true)
+        if (token) {
+            setShow(true)
         } else {
-        navigate('/login');
+            navigate('/login');
         }
     };
 
@@ -29,13 +29,13 @@ const Sidebar = () => {
 
     useEffect(() => {
         dispatch(getCartThunk())
-    },[]) 
-    
-    console.log(cart)
+    }, [])
+
+    //console.log(cart)
     return (
         <div>
-            <Button variant="info" onClick={handleShow}>
-                Cart
+            <Button variant="danger" onClick={handleShow} className="button">
+                <i className="fa-solid fa-cart-shopping"></i>
             </Button>
 
             <Offcanvas show={show} onHide={handleClose} placement={"end"}>
@@ -44,25 +44,29 @@ const Sidebar = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
 
-                <Button variant="success" onClick={() => dispatch(buyCartThunk())}>
-                    Buy Cart
-                </Button>
+                    <Button variant="success" onClick={() => dispatch(buyCartThunk())}>
+                        Buy Cart
+                    </Button>
+                        {cart.map(cartItem => {
+                            return (
+                                <div 
+                                    key={cartItem.id} 
+                                    className='cart-item'>
 
-                    {cart.map(cartItem => {
-                        return (
-                        <div key={cartItem.id}>
-                            <div onClick={() => navigate(`/product/${cartItem.id}`)} type={"button"}>
-                                {cartItem.title}
-                            </div>
-                            <div>
-                                {cartItem.price}
-                            </div>
-                            <div>
-                                {cartItem.productsInCart.quantity}
-                            </div>
-                        </div>   
-                        )
-                    })}
+                                    <h6 onClick={() => navigate(`/product/${cartItem.id}`)} type={"button"}>
+                                        {cartItem.title}
+                                    </h6>
+
+                                    <h6>
+                                        Price: {cartItem.price}
+                                    </h6>
+
+                                    <h6>
+                                        Quantity: {cartItem.productsInCart.quantity}
+                                    </h6>
+                                </div>
+                            )
+                        })}
                 </Offcanvas.Body>
             </Offcanvas>
         </div>

@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addCartThunk } from '../store/slices/cart.slice';
 import { getProductsThunk } from '../store/slices/products.slice';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+import '../styles/productdetail.css'
 
 const ProductDetail = () => {
     const allProducts = useSelector((state) => state.products);
@@ -52,40 +56,65 @@ const ProductDetail = () => {
 
     return (
         <div>
-            <h1>{productDetail?.title}</h1>
-            <img src={productDetail?.productImgs?.[0]} alt="" />
-            <p>{productDetail?.description}</p>
-            <div>
+            <Container className='container'>
+                <Row>
+                    <Col>
+                        <div className='product-title'>
+                            <h1>{productDetail?.title}</h1>
+                        </div>
 
-                <button 
-                    onClick={addItemToCart} 
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}>
-                        Add product
-                </button>
-                <button onClick={increaseQuantity}>+</button>
-                    {quantity}
-                <button onClick={decreaseQuantity}>-</button>
+                        <div className='product-img'>
+                            <img src={productDetail?.productImgs?.[0]} alt={productDetail?.title} />
+                        </div>
+                        <div className='product-price'>
+                            <h3 >{productDetail?.price}</h3>
+                        </div>
+                    </Col>
+                    <Col xs={3}>
+                        <div className='product-btn d-flex flex-column'>
+                            <button onClick={increaseQuantity}>+</button>
+                            <div className='quantity d-flex justify-content-center'>
+                                {quantity}
+                            </div>
+                            <button onClick={decreaseQuantity}>-</button>
+                            <button
+                                className='add-btn'
+                                onClick={addItemToCart}
+                                value={quantity}
+                                onChange={(e) => setQuantity(e.target.value)}>
+                                Add product
+                            </button>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+            
+            <div className='container'>
+                <div className='product-description'>
+                    <p>{productDetail?.description}</p>
+                </div>
+            </div>
 
-                <h1>Related Products</h1>
+            <h1 className='related-products'>Related Products</h1>
+            <div className='container'>
                 <div>
                     {suggProducts.map((productItem) => (
-                        <div 
+                        <div
+                            className='related-products-container'
                             key={productItem.id}
                             onClick={() => navigate(`/product/${productItem.id}`)}>
-                            <div>
+                            <h6 className='prd-realted-title'>
                                 {productItem.title}
-                            </div>
-                            
-                            <div>
+                            </h6>
+
+                            <div className='prd-realted-img'>
                                 <img src={productItem.productImgs} alt="" type='button' />
                             </div>
 
-                            <div>
-                                 $ {productItem.price}
-                            </div>
+                            <h6 className='prd-realted-price'>
+                                $ {productItem.price}
+                            </h6>
                         </div>
-                        
                     ))}
                 </div>
             </div>

@@ -35,9 +35,12 @@ const Login = () => {
     return (
         <div>
             <h1 className='login-title'>Log In</h1>
-            <h3>"email": "mason@gmail.com",
-                "password": "mason1234"
-            </h3>
+            <div className='container data-container'>
+                <h3>Test</h3>
+                <h6>mason@gmail.com</h6>
+                <h6>mason1234</h6>
+            </div>
+            
             <div className='input-container'>
                 <form onSubmit={handleSubmit(submit)}>
                     <div className="mb-3">
